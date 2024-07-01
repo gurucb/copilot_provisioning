@@ -22,37 +22,20 @@ RAG:
 		Cosmos DB
 			Cosine Similarity, Eucledean Distance
 		Azure SQL DB
-
 		Azure Sematic Search
-
 		Kusto		
-
 		FASSAI (In Memory) 
 			Deployment Mode: Library
 			Script Path: 
-
-
 Frameworks:
 	Sematic Kernel
 	LangChain
 	LLama
-	
-		
-
 Cache
 	Redis
-
-
-
 Storage
 	Blob Storage
-
-
-
 Compute
 	AKS
-
-
-
 Metadata Store
 	Cosmos

@@ -27,11 +27,10 @@ properties:
           provider: "azure"
           model_name: "ada"
       - vector_store:
-        - path: "azure_congitive_search.yaml"
+        - path: "azure_ai_search.yaml"
     -model:
         deployment_name: "name of the Deployment"
         model_name: "name of the Model"
         provider: "azure"
         version: "1.0"
         deployment_options: "managed compute / serverless api"
-        

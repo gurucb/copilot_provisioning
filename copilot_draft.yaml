@@ -11,9 +11,9 @@ properties:
       - "tag2": "value2"
   - type: "generic"
     -storage:
-      - path: "copilot_storage.yaml"
+      - path: "copilot_storage.bicep"
     -compute:
-      - path: "aks_sample.yaml"
+      - path: "aks_sample.bicep"
     -network:
       - subnet: "Subnet1"
       - dns: "DNS1"
@@ -26,8 +26,8 @@ properties:
           type: "service / library"
           provider: "azure / hugging_face / openai / others"
       - vector_store:
-        - path: "cosmos_vector_store.yaml"
-    -model:
+        - path: "cosmos_vector_store.bicep"
+    -model_llm_engine:
         deployment_name: "name of the Deployment"
         model_name: "name of the Model"
         provider: "azure / hugging_face / openai / meta / others"
