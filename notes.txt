@@ -1,0 +1,58 @@
+GPT Models:
+	Open AI
+	Azure Open AI
+		Model Deployment
+		Version
+		Endpoint
+	Lama
+	Hugging Face 	(Models) Azure AI Studio
+
+RAG:
+	Embeddings
+		Azure open AI
+			ADA
+
+		Hugging Face
+			Library / API
+
+		Open AI
+			ADA
+
+	Vector Store
+		Cosmos DB
+			Cosine Similarity, Eucledean Distance
+		Azure SQL DB
+
+		Azure Sematic Search
+
+		Kusto		
+
+		FASSAI (In Memory) 
+			Deployment Mode: Library
+			Script Path: 
+
+
+Frameworks:
+	Sematic Kernel
+	LangChain
+	LLama
+	
+		
+
+Cache
+	Redis
+
+
+
+Storage
+	Blob Storage
+
+
+
+Compute
+	AKS
+
+
+
+Metadata Store
+	Cosmos

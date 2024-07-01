@@ -1,0 +1,32 @@
+common:
+  - "subscription_id": "00000000-0000-0000-0000-000000000000"
+  - "resource_group": "rg1"
+  - "location": "eastus"
+  - "tags":
+    - "tag1": "value1"
+    - "tag2": "value2"
+workloads:
+  - generic:
+    - storage:
+      - path: "copilot_storage.yaml"
+    - compute:
+      - path: "aks_sample.yaml"
+    - network:
+      - subnet: "Subnet1"
+      - dns: "DNS1"
+      - network_security_group:
+        - "NSG1"
+        - "NSG2"
+  - ai:
+    - rag:
+        - embedding_engine:
+            type: "service / library"
+            provider: "azure / hugging_face / openai / others"
+        - vector_store:
+          - path: "cosmos_vector_store.yaml"
+    - model:
+        deployment_name: "name of the Deployment"
+        model_name: "name of the Model"
+        provider: "azure / hugging_face / openai / meta / others"
+        deployment_options: "managed compute / serverless api"
+        
