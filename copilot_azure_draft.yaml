@@ -1,0 +1,37 @@
+name: "copilot_provisioning_azure"
+version: "0.0.0"
+description: "Draft for Copilot Provisioning"
+properties: 
+  - type: "common"
+    subscription_id: "00000000-0000-0000-0000-000000000000"
+    resource_group": "rg1"
+    location": "eastus"
+    -tags:
+      - "tag1": "value1"
+      - "tag2": "value2"
+  - type: "generic"
+    -storage:
+      - path: "copilot_storage.yaml"
+    -compute:
+      - path: "aks_sample.yaml"
+    -network:
+      - subnet: "Subnet1"
+      - dns: "DNS1"
+      - network_security_group:
+        - "NSG1"
+        - "NSG2"
+  - type: "ai"
+    -rag:
+      - embedding_engine:
+          type: "Service"
+          provider: "azure"
+          model_name: "ada"
+      - vector_store:
+        - path: "azure_congitive_search.yaml"
+    -model:
+        deployment_name: "name of the Deployment"
+        model_name: "name of the Model"
+        provider: "azure"
+        version: "1.0"
+        deployment_options: "managed compute / serverless api"
+        
