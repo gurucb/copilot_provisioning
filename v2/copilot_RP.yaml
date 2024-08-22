@@ -1,0 +1,123 @@
+# ISV:
+  # 1. ISV Layers decides layers based on architectures.
+  # 2. ISV Partners for each layer provides options for multiple components that customer chooses.
+  # 3. These options are presented to customer.
+  # 4. Also scale options for each of these services is to be presented by ISV 
+# Customer:
+  # 1. Customer selects these options based on  
+    # 1. Recommendation by partner
+    # 2. Existing services customer already subscrbed.
+  # 2. Customer chooses the sizing option
+# Microsoft:
+  #1. Microsoft provides a global YAML that includes all services supported by Microsoft across layers.
+  #2. ISV chooses subset of components that application / solution supports.
+  #3. After Customer chooses the options, Selected YAML will be shared with Microsoft and 
+  #4. Microsoft provisions resources.
+
+
+
+packageName: "Copilot_RP_Package"
+packageVersion: "0.0.2"
+packageDescription: "Copilot RP Package"
+
+deploymentSettings:
+    #Deployment Details
+    deploymentName: "Deployment_Name"
+    deploymentDescription: "describe the deployment"
+    prefix: "coptvsnext"
+    targetCloud: "Azure" # Azure, Dynamics, Teams
+
+    #Azure Subscription Details  
+    subscription: "Subscription"
+    resourceGroup: "ResourceGroup"
+    deploymentRegion: "East US"
+    zoneRedundancy: false
+    secureDeployment: true 
+    tags: "[copilot]"
+    deploymentType: "Production" #Development, Production, Staging
+    deploymentTarget: "Azure" # "OnPrem", "Copilot Studio", "AI Studio"
+
+# Client Settings capture Client / API details. (Optional)
+  # Agent for teams bot
+  # Dynamics
+  # M 365
+extensionsSettings:
+  type: "Teams Bot"
+  wafDdosEnabled: false
+  #Check with ISVs various consumption channels.
+  channels: 
+    - type: "Teams Bot"
+      botName: "" 
+      botId: "" 
+      backendURI: ""
+
+###Orchestrator Settings capture the orchestrator details. 
+###Orchestrator includes frameworks like Langchain / LLamaIndex / Semantic Kernel and Customer Code.
+###ISV Developer needs to provide Image with all dependencies included.
+### TODO: Add Support for Configuration (like AKV post deployment) for endpoints, connection strings and identities.
+
+## (Make it generic for multiple workloads (Web App , LLM Frameworks, Business API) list)
+aiOrchestratorSettings: 
+  computeType: "LLMEngine" #AppService, AKS, VMSS
+  registry: "URI of Public Registry with base image public access"
+  imageName: "Imaged to be used by AppService during creation of service" 
+  imageTag: "image tag / version" 
+  scaleSettings:
+
+###RAG Settings capture the settings for Embeddings Models and Vector Stores.    
+ragSettings:
+  - embeddingsModel:
+      type: "Azure Open AI"
+      name: "txt-ada-001"
+      version: "Auto-Update"
+      scale:
+        tokens: "1000"
+  - vectorStoreSettings:
+      type: "AI Search" #AI Search, Azure SQL DB, Azure Data Explorer, 
+      scale:
+        pricingTier: "S0 Standard"
+        replicas: "1"
+        partitions: "2"  
+cacheSettings:
+    type: "Azure Redis Cache"
+    scale:
+      sku: "Basic"
+      capacity: "1"
+modelSettings:
+   - modelName: "gpt-4o"
+     type: "Azure Open AI" 
+     Version: "Auto-Update"
+   - modelName: "gpt-35-turbo"
+     type: "Azure Open AI" 
+     version: "Auto-Update"
+   - modelName: "gpt-35-turbo" 
+     type: "Azure AI Studio" 
+     name: "gpt-35-turbo"
+     Version: "Auto-Update"
+   - modelName: "gpt-35-turbo" 
+     type: "Azure AI Studio" 
+     name: "gpt-35-turbo"
+     Version: "Auto-Update"
+responsiveAISettings:
+  contentModerator: true
+dataStoreSettings:
+  - fabric:
+      type: "Azure Cosmos DB"
+      scale:
+        pricingTier: "S0 Standard"
+        replicas: "1"
+        partitions: "2" 
+  - storageAccount:
+      type: "Azure Blob Storage"
+      scale:
+        pricingTier: "S0 Standard"
+        replicas: "1"
+        partitions: "2" 
+  - comosDB:
+      type: "Azure Cosmos DB"
+      scale:
+        pricingTier: "S0 Standard"
+        replicas: "1"
+        partitions: "2"
+postDeploymentSettings:
+  validatePostDeployment: true

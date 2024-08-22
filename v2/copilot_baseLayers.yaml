@@ -1,0 +1,15 @@
+packageName: "Copilot_Package"
+packageVersion: "1.0.0"
+packageDescription: "Copilot Package"
+
+deploymentSettings:
+clientSettings:
+orchestratorSettings:
+ragSettings:
+  - embeddingsModels:
+  - vectorStores:
+cacheSettings:
+modelSettings:
+responsiveAISettings:
+dataStoreSettings:
+postDeploymentSettings:

@@ -1,0 +1,134 @@
+{
+    "packageName": "Copilot_RP_Package",
+    "packageVersion": "1.0.0",
+    "packageDescription": "Copilot RP Package",
+    "deploymentSettings": {
+        "deploymentName": "Deployment_Name",
+        "deploymentDescription": "describe the deployment",
+        "prefix": "coptvsnext",
+        "targetCloud": "Azure",
+        "subscription": "Subscription",
+        "resourceGroup": "ResourceGroup",
+        "deploymentRegion": "East US",
+        "zoneRedundancy": false,
+        "secureDeployment": true,
+        "tags": "[copilot]",
+        "deploymentType": "Production"
+    },
+    "clientSettings": {
+        "type": "Teams Bot",
+        "wafDdosEnabled": false,
+        "channels": [
+            {
+                "type": "Teams Bot",
+                "botName": "",
+                "botId": "",
+                "backendURI": ""
+            },
+            {
+                "type": "API",
+                "apiName": "",
+                "apiId": "",
+                "backendURI": ""
+            }
+        ]
+    },
+    "orchestratorSettings": {
+        "computeType": "AppService",
+        "registry": "URI of Public Registry with base image public access",
+        "imageName": "Imaged to be used by AppService during creation of service",
+        "imageTag": "image tag / version",
+        "scaleSettings": null
+    },
+    "ragSettings": [
+        {
+            "embeddingsModel": {
+                "type": "Azure Open AI",
+                "name": "txt-ada-001",
+                "version": "Auto-Update",
+                "scale": {
+                    "tokens": "1000"
+                }
+            }
+        },
+        {
+            "vectorStoreSettings": {
+                "type": "AI Search",
+                "scale": {
+                    "pricingTier": "S0 Standard",
+                    "replicas": "1",
+                    "partitions": "2"
+                }
+            }
+        }
+    ],
+    "cacheSettings": {
+        "type": "Azure Redis Cache",
+        "scale": {
+            "sku": "Basic",
+            "capacity": "1"
+        }
+    },
+    "modelSettings": [
+        {
+            "modelName": "gpt-4o",
+            "type": "Azure Open AI",
+            "Version": "Auto-Update"
+        },
+        {
+            "modelName": "gpt-35-turbo",
+            "type": "Azure Open AI",
+            "version": "Auto-Update"
+        },
+        {
+            "modelName": "gpt-35-turbo",
+            "type": "Azure AI Studio",
+            "name": "gpt-35-turbo",
+            "Version": "Auto-Update"
+        },
+        {
+            "modelName": "gpt-35-turbo",
+            "type": "Azure AI Studio",
+            "name": "gpt-35-turbo",
+            "Version": "Auto-Update"
+        }
+    ],
+    "responsiveAISettings": {
+        "contentModerator": true
+    },
+    "dataStoreSettings": [
+        {
+            "fabric": {
+                "type": "Azure Cosmos DB",
+                "scale": {
+                    "pricingTier": "S0 Standard",
+                    "replicas": "1",
+                    "partitions": "2"
+                }
+            }
+        },
+        {
+            "storageAccount": {
+                "type": "Azure Blob Storage",
+                "scale": {
+                    "pricingTier": "S0 Standard",
+                    "replicas": "1",
+                    "partitions": "2"
+                }
+            }
+        },
+        {
+            "comosDB": {
+                "type": "Azure Cosmos DB",
+                "scale": {
+                    "pricingTier": "S0 Standard",
+                    "replicas": "1",
+                    "partitions": "2"
+                }
+            }
+        }
+    ],
+    "postDeploymentSettings": {
+        "validatePostDeployment": true
+    }
+}

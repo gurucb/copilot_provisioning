@@ -1,0 +1,107 @@
+packageName: "Copilot_RP_Package"
+packageVersion: "0.0.2"
+packageDescription: "Copilot RP Package"
+
+deploymentSettings:
+    #Deployment Details
+    deploymentName: "Deployment_Name"
+    deploymentDescription: "describe the deployment"
+    prefix: "coptvsnext"
+    targetCloud: "Azure" # Azure, Dynamics, Teams
+
+    #Azure Subscription Details  
+    subscription: "Subscription"
+    resourceGroup: "ResourceGroup"
+    deploymentRegion: "East US"
+    zoneRedundancy: false
+    secureDeployment: true 
+    tags: "[copilot]"
+    deploymentType: "Production" #Development, Production, Staging
+    deploymentTarget: "Azure" # "OnPrem", "Copilot Studio", "AI Studio"
+
+# Client Settings capture Client / API details. (Optional)
+  # Agent for teams bot
+  # Dynamics
+  # M 365
+extensionsSettings:
+  type: "Teams Bot"
+  wafDdosEnabled: false
+  #Check with ISVs various consumption channels.
+  channels: 
+    - type: "Teams Bot"
+      botName: "" 
+      botId: "" 
+      backendURI: ""
+
+###Orchestrator Settings capture the orchestrator details. 
+###Orchestrator includes frameworks like Langchain / LLamaIndex / Semantic Kernel and Customer Code.
+###ISV Developer needs to provide Image with all dependencies included.
+### TODO: Add Support for Configuration (like AKV post deployment) for endpoints, connection strings and identities.
+
+## (Make it generic for multiple workloads (Web App , LLM Frameworks, Business API) list)
+aiOrchestratorSettings: 
+  computeType: "LLMEngine" #AppService, AKS, VMSS
+  registry: "URI of Public Registry with base image public access"
+  imageName: "Imaged to be used by AppService during creation of service" 
+  imageTag: "image tag / version" 
+  scaleSettings:
+
+###RAG Settings capture the settings for Embeddings Models and Vector Stores.    
+ragSettings:
+  - embeddingsModel:
+      condition: "OR" #Only On Embedded model for each deployment
+      type: "Azure Open AI" # 
+      name: "txt-ada-001"
+      version: "Auto-Update"
+      scale:
+        tokens: "1000"
+  - vectorStoreSettings:
+      condition: "OR" # Only one vector store will be selected
+      type: "AI Search" #AI Search, Azure SQL DB, Azure Data Explorer, AzurePostgreSQL
+      scale:
+        pricingTier: "S0 Standard"
+        replicas: "1"
+        partitions: "2"  
+cacheSettings:
+    type: "Azure Redis Cache"
+    scale:
+      sku: "Basic"
+      capacity: "1"
+modelSettings:
+   - condition: "AND" #Need to have more than one selection 
+   - modelName: "gpt-4o"
+     type: "AzureOpenAI" 
+     Version: "Auto-Update"
+   - modelName: "gpt-35-turbo"
+     type: "AzureOpenAI" 
+     version: "Auto-Update"
+   - modelName: "Phi3.58b" #OpenAI, Microsoft, Non Microsoft
+     type: "AzureAIStudio" 
+     Version: "0.1"
+   - modelName: "mycustommodel" 
+     type: "MLStudio" 
+     Version: "1.1"
+responsiveAISettings:
+  contentModerator: true
+dataStoreSettings:
+  - fabric:
+      type: "Azure Cosmos DB"
+      scale:
+        pricingTier: "S0 Standard"
+        replicas: "1"
+        partitions: "2" 
+  - storageAccount:
+      type: "Azure Blob Storage"
+      scale:
+        pricingTier: "S0 Standard"
+        replicas: "1"
+        partitions: "2" 
+  - comosDB:
+      type: "Azure Cosmos DB"
+      scale:
+        pricingTier: "S0 Standard"
+        replicas: "1"
+        partitions: "2"
+postDeploymentSettings:
+  pineConeConnectionString: 'xyz'
+  validatePostDeployment: true
